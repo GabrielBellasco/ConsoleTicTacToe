@@ -3,6 +3,7 @@
 
 //Include
 #include <iostream>
+#include <windows.h>
 
 //Class Game (the game core) | Classe Game (jogo em inglês) (o núcleo do programa)
 class Game {
@@ -31,13 +32,39 @@ Game::Game(){
 
     while(!isgameover){
         //Game main loop | Loop principal do jogo
-        RenderGame(board, turnI)
-    }
+
+        //Variable to get the player choose | Variavel que recebe a escolha do jogador
+        int pc;
+
+        RenderGame(board, turnI);
+
+        ChooseP:
+        std::cout << "Choose a place to play (1 - 9) " << std::endl;
+        std::cin >> pc;
+        pc = pc - 1;
+        if(board[pc] != '-'){
+            std::cout << "\n" << "This place is already being used! Choose another." << std::endl;
+            goto ChooseP;
+        } else {
+            board[pc] = (turnI == 0) ? 'O' : 'X';
+            RenderGame(board, turnI);
+        }
+        RenderGame(board, turnI);
+
+        turnI= (turnI == 0) ? 1 : 0;
+
+    };
     
 };
 
 //Method to render the game || Método para renderizar o jogo
 void Game::RenderGame(char b[9], int t){
-    std::cout << (t == 0) ? "Player 1 (O) Turn!" : "Player 2 (X) Turn!" << std::endl;
+    system("cls");
+    const char* txt = (t == 0) ? "<-- Player 1 (O) Turn! -->" : "<-- Player 2 (X) Turn! -->";
+    std::cout << txt << std::endl << std::endl;
+    std::cout << "<|"<< b[0] << " " << b[1] << " " << b[2] << "|>"<< std::endl;
+    std::cout << "<|"<< b[3] << " " << b[4] << " " << b[5] << "|>"<< std::endl;
+    std::cout << "<|"<< b[6] << " " << b[7] << " " << b[8] << "|>"<< std::endl;
 
+    Sleep(1000);
 };

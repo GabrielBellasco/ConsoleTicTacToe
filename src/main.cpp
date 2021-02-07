@@ -3,7 +3,6 @@
 
 //Include
 #include <iostream>
-
 #include "Game.h"
 
 //Main function | Função Principal
