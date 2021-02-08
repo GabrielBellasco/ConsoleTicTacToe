@@ -66,5 +66,5 @@ void Game::RenderGame(char b[9], int t){
     std::cout << "<|"<< b[3] << " " << b[4] << " " << b[5] << "|>"<< std::endl;
     std::cout << "<|"<< b[6] << " " << b[7] << " " << b[8] << "|>"<< std::endl;
 
-    Sleep(1000);
+    Sleep(500);
 };
