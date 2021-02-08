@@ -49,11 +49,66 @@ Game::Game(){
             board[pc] = (turnI == 0) ? 'O' : 'X';
             RenderGame(board, turnI);
         }
-        RenderGame(board, turnI);
 
-        turnI= (turnI == 0) ? 1 : 0;
+    
+        if( board[0] != '-' && board[0] == board[1] && board[0] == board[2]){
+            const char* t = (board[0] == 'O') ? "1 (O) Wins!" : "2 (X) Wins!";
+            std::cout << "Player " << t << std::endl;
+            isgameover = true;
+        } else if( board[3] != '-' && board[3] == board[4] && board[3] == board[5]){
+            const char* t = (board[3] == 'O') ? "1 (O) Wins!" : "2 (X) Wins!";
+            std::cout << "Player " << t << std::endl;
+            isgameover = true;
+        } else if( board[6] != '-' && board[6] == board[7] && board[6] == board[8]){
+            const char* t = (board[6] == 'O') ? "1 (O) Wins!" : "2 (X) Wins!";
+            std::cout << "Player " << t << std::endl;
+            isgameover = true;
+        } else if( board[0] != '-' && board[0] == board[4] && board[0] == board[8]){
+            const char* t = (board[0] == 'O') ? "1 (O) Wins!" : "2 (X) Wins!";
+            std::cout << "Player " << t << std::endl;
+            isgameover = true;
+        } else if( board[2] != '-' && board[2] == board[4] && board[2] == board[6]){
+            const char* t = (board[2] == 'O') ? "1 (O) Wins!" : "2 (X) Wins!";
+            std::cout << "Player " << t << std::endl;
+            isgameover = true;
+        } else if( board[0] != '-' && board[0] == board[3] && board[0] == board[6]){
+            const char* t = (board[0] == 'O') ? "1 (O) Wins!" : "2 (X) Wins!";
+            std::cout << "Player " << t << std::endl;
+            isgameover = true;
+        } else if( board[1] != '-' && board[1] == board[4] && board[1] == board[7]){
+            const char* t = (board[1] == 'O') ? "1 (O) Wins!" : "2 (X) Wins!";
+            std::cout << "Player " << t << std::endl;
+            isgameover = true;
+        }else if( board[2] != '-' && board[2] == board[5] && board[2] == board[8]){
+            const char* t = (board[2] == 'O') ? "1 (O) Wins!" : "2 (X) Wins!";
+            std::cout << "Player " << t << std::endl;
+            isgameover = true;
+        } else {
+            RenderGame(board, turnI);
+
+            turnI= (turnI == 0) ? 1 : 0;
+        }
 
     };
+    i:
+    std::cout << "<-- Game Ended, wanna play again? (s/n)-->" << std::endl;
+
+    char ans;
+    std::cin >> ans;
+
+    if(ans == 'Y' || ans == 'y'){
+
+        Game g = Game();
+
+    }else if (ans == 'N' || ans == 'n'){
+
+        std::cout << "<-- Ok! Bye! -->" << std::endl;
+        system("exit");
+    }else{
+
+        std::cout << "ERROR: Invalid Operator (" << ans << ")" << std::endl << std::endl;
+        goto i;
+    }
     
 };
 
